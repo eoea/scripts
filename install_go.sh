@@ -110,7 +110,7 @@ function main() {
 		if [[ -e "$(which sudo)" ]]; then
 			sudo rm -rf "/usr/local/go" && sudo tar -C "/usr/local" -xzf "${HOME}/Downloads/${file_name}"
 		else
-			rm -rf "/usr/local/go" && sudo tar -C "/usr/local" -xzf "${HOME}/Downloads/${file_name}"
+			rm -rf "/usr/local/go" && tar -C "/usr/local" -xzf "${HOME}/Downloads/${file_name}"
 		fi
 	else
 		exit_code=1
