@@ -11,7 +11,7 @@
 # Created by Emile O.E. Antat (eoea) <eoea754@gmail.com>
 set -e
 
-function usage() {
+usage() {
 	echo "${0} is a shell script that downloads and installs Go "
 	echo "for the correct OS and architecture. "
 	echo
@@ -45,7 +45,7 @@ function usage() {
 #   - The name of the downlaoded file. Or:
 #   - (Return 1 if a Kernel is neither Darwin nor Linux)
 ######################################
-function download() {
+download() {
 	local version
 	version="${*}"
 
@@ -74,7 +74,7 @@ function download() {
 	echo "${url}" | awk -F/ '{ print $5 }'
 }
 
-function main() {
+main() {
 	local version
 	local url
 	local exit_code=0
