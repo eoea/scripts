@@ -27,7 +27,7 @@ usage() {
 	echo "Examples:"
 	echo
 	echo "        ${0} "
-	echo "        ${0} -v 1.21.1"
+	echo "        ${0} -v 1.21.3"
 	echo
 }
 
@@ -79,7 +79,7 @@ main() {
 	local url
 	local exit_code=0
 
-	version="1.21.1"
+	version="1.21.3"
 
 	while getopts "hv:" flags; do
 		case "${flags}" in
