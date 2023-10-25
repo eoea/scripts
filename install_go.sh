@@ -107,11 +107,7 @@ main() {
 	file_name="$(download "${version}")"
 
 	if [[ -f "${HOME}/Downloads/${file_name}" ]]; then
-		if [[ -e "$(which sudo)" ]]; then
-			sudo rm -rf "/usr/local/go" && sudo tar -C "/usr/local" -xzf "${HOME}/Downloads/${file_name}"
-		else
-			rm -rf "/usr/local/go" && tar -C "/usr/local" -xzf "${HOME}/Downloads/${file_name}"
-		fi
+			rm -rf "${HOME}/.local/bin/go" && tar -C "${HOME}/.local/bin" -xzf "${HOME}/Downloads/${file_name}"
 	else
 		exit_code=1
 		echo "Error: during the file download." >&2
