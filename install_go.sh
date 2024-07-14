@@ -22,12 +22,12 @@ usage() {
 	echo "The flags are:"
 	echo
 	echo "        -h         Show help."
-	echo "        -v         To specify the version, default is 1.21.0"
+	echo "        -v         To specify the version, default is 1.22.5"
 	echo
 	echo "Examples:"
 	echo
 	echo "        ${0} "
-	echo "        ${0} -v 1.21.3"
+	echo "        ${0} -v 1.22.5"
 	echo
 }
 
@@ -79,7 +79,7 @@ main() {
 	local url
 	local exit_code=0
 
-	version="1.21.3"
+	version="1.22.5"
 
 	while getopts "hv:" flags; do
 		case "${flags}" in
