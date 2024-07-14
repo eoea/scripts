@@ -108,6 +108,7 @@ main() {
 
 	if [[ -f "${HOME}/Downloads/${file_name}" ]]; then
 			rm -rf "${HOME}/.local/bin/go" && tar -C "${HOME}/.local/bin" -xzf "${HOME}/Downloads/${file_name}"
+      rm "${HOME}/Downloads/${file_name}"
 	else
 		exit_code=1
 		echo "Error: during the file download." >&2
