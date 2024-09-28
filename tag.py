@@ -7,8 +7,9 @@ import subprocess
 
 
 def main():
-    scripts_path = os.path.join(os.environ.get("MYSCRIPTS"), "tag")
-    prog_path = os.path.join(os.getcwd(), "tag.py")
+    scripts_path: str = os.path.join(os.environ.get("MYSCRIPTS"), "tag")
+    prog_path: str = os.path.join(os.getcwd(), "tag.py")
+    is_installed: bool = False
 
     # This is only needed if the script `tag.py` is not in ~/.local/scripts/tag
     if not os.path.isfile(scripts_path):
@@ -16,6 +17,7 @@ def main():
             ["ln", "-sfv", prog_path, scripts_path], capture_output=True, text=True
         )
         print("Success: Symlink created.")
+        is_installed = True
 
     py_module_path: str = site.getsitepackages()[0]
     cmd = subprocess.run(
@@ -28,6 +30,8 @@ def main():
         print("Error: ", cmd.stderr)
     else:
         print("Success: Python tags created.")
+        if is_installed:
+            os.remove("tags")
 
 
 if __name__ == "__main__":
