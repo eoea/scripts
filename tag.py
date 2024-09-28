@@ -3,6 +3,8 @@ import os
 import site
 import subprocess
 
+# Program that ctags the Python standard library.
+
 
 def main():
     scripts_path = os.path.join(os.environ.get("MYSCRIPTS"), "tag")
