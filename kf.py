@@ -36,8 +36,6 @@ def count_occurrence(file: str) -> None:
 def count_occurrence_in_all_files(path: str) -> None:
     if not os.path.isfile(path):
         for dir_content in os.listdir(path):
-            if dir_content.endswith(".swp"):
-                continue
             if os.path.isfile(dir_content):
                 try:
                     count_occurrence(os.path.join(path, dir_content))
