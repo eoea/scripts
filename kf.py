@@ -3,10 +3,11 @@
 kf prints file and line information for all locations where keyword
 tags are found.
 """
+
 import os
 import argparse
 
-CHAR_COUNT = 65
+CHAR_COUNT = 40
 KEYWORDS = [
     "@TODO",
     "@NOTE",
@@ -20,14 +21,14 @@ KEYWORDS = [
 ]
 
 
-def count_occurrence(file: str) -> None:
+def _count_occurrence(file: str) -> None:
     with open(file, "r") as f:
-        i = 0
+        i = 1
         for line in f:
             for word in KEYWORDS:
                 if word in line:
                     print(
-                        f"{file}: {i}: \033[33m{line.strip():.{CHAR_COUNT}}...\033[0m"
+                        f"./{file[len(os.getcwd())+1:]}: {i}: \033[33m{line.strip():.{CHAR_COUNT}}...\033[0m"
                     )
                     break
             i += 1
@@ -36,24 +37,27 @@ def count_occurrence(file: str) -> None:
 def count_occurrence_in_all_files(path: str) -> None:
     if not os.path.isfile(path):
         for dir_content in os.listdir(path):
+            if dir_content.endswith(".swp"):
+                continue
             if os.path.isfile(dir_content):
                 try:
-                    count_occurrence(os.path.join(path, dir_content))
+                    _count_occurrence(os.path.join(path, dir_content))
                 except:
                     pass
             else:
                 count_occurrence_in_all_files(os.path.join(path, dir_content))
     else:
         try:
-            count_occurrence(
+            _count_occurrence(
                 path
-            )  # @NOTE(eoea): No need to do `os.path.join(path, dir_content)` because this is path is already set to this.
+            )  # @NOTE(eoea): No need to do `os.path.join(path, dir_content)` because this is done in the recursion call above.
         except:
             pass
 
 
 def main() -> None:
     count_occurrence_in_all_files(os.path.realpath("."))
+
 
 
 if __name__ == "__main__":
